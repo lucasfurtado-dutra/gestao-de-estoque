@@ -63,10 +63,7 @@ public class VendaController {
 
     @PostMapping("/atualizar/{id}")
     public String atualizarVenda(@PathVariable Long id, @ModelAttribute Venda venda) {
-        Venda vendaExistente = vendaRepository.findById(id).orElseThrow(() -> new RuntimeException("Venda não encontrada"));
-        vendaExistente.setDataVenda(venda.getDataVenda());
-        vendaExistente.setPrecoTotal(venda.getPrecoTotal());
-        vendaRepository.save(vendaExistente);
+        vendaService.atualizarVenda(id, venda);
         return "redirect:/vendas";
     }
 }
