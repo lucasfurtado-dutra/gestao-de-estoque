@@ -97,6 +97,9 @@
 <div class="container">
 <h1>Editar Venda</h1>
 <form th:action="@{/vendas/atualizar/{id}(id=${venda.id})}" th:object="${venda}" method="post">
+    <label>Item do Cardápio:</label>
+    <input type="text" th:value="${venda.cardapio.nome}" readonly>
+    <br>
     <label>Quantidade:</label>
     <input type="number" th:field="*{quantidadeVendida}" required>
     <br>
