@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Editar Item Cardápio</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #F6F6F6, #D4D4D4);
+    }
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    label {
+        font-weight: bold;
+        color: #555;
+    }
+    select, input {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 25%;
+    }
+    select:focus, input:focus {
+        border-color: #FFA500;
+        outline: none;
+        box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #FFA500;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s ease;
+        width: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+    button:hover {
+        background-color: #FF8100;
+        scale: 1.1;
+    }
+    button:active {
+        background-color: #e67300;
+    }
+    a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    a:hover {
+        color: #2c3e50;
+        text-decoration: underline;
+    }
+    a:active {
+        color: #1abc9c;
+    }
+    @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            padding: 15px;
+        }
+        form {
+            gap: 10px;
+        }
+        button {
+            font-size: 12px;
+            padding: 8px 15px;
+        }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+<h1>Editar Item do Cardápio</h1>
+<form th:action="@{/cardapio/atualizar/{id}(id=${cardapio.id})}" th:object="${cardapio}" method="post">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" th:field="*{nome}" required>
+  <br>
+  <label for="preco">Preço:</label>
+  <input type="number" id="preco" th:field="*{preco}" step="0.01" required>
+  <br>
+  <button type="submit">Salvar</button>
+</form>
+<a href="/static/cardapio">Cancelar</a>
+</div>
+</body>
+</html>
