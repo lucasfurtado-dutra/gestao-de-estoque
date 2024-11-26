@@ -34,6 +34,19 @@ public class VendaService {
         }
     }
 
+    public void atualizarVenda(Long id, Venda vendaAtualizada) {
+        Venda vendaExistente = vendaRepository.findById(id).orElseThrow(() -> new RuntimeException("Venda não encontrada"));
+
+        vendaAtualizada.setCardapio(vendaExistente.getCardapio());
+        vendaExistente.setDataVenda(vendaAtualizada.getDataVenda());
+        vendaExistente.setQuantidadeVendida(vendaAtualizada.getQuantidadeVendida());
+
+        double precoTotal = vendaExistente.getCardapio().getPreco() * vendaAtualizada.getQuantidadeVendida();
+        vendaExistente.setPrecoTotal(precoTotal);
+
+        vendaRepository.save(vendaExistente);
+    }
+
     public List<Venda> listarVendas() {
         return vendaRepository.findAll();
     }
